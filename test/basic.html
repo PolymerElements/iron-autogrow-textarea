@@ -36,6 +36,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </template>
     </test-fixture>
 
+    <test-fixture id="basic-prefilled">
+      <template>
+        <iron-autogrow-textarea>
+<textarea>
+batman
+and
+robin
+</textarea>
+        </iron-autogrow-textarea>
+      </template>
+    </test-fixture>
+
     <script>
 
       suite('basic', function() {
@@ -75,6 +87,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           autogrow.bindValue = 'batman';
           var finalHeight = autogrow.offsetHeight
           assert.isTrue(finalHeight < initialHeight);
+        });
+
+        test('bindValue gets initial textarea content', function() {
+          var autogrow = fixture('basic-prefilled');
+          var textarea = autogrow.querySelector('textarea');
+
+          assert.equal(textarea.value, 'batman\nand\nrobin\n', 'textarea value equals its content');
+          assert.equal(autogrow.bindValue, textarea.value, 'bindValue equals initial textarea value');
+        });
+
+        test('textarea grows to fit its initial content', function() {
+          var autogrow = fixture('basic');
+          var initialHeight = autogrow.offsetHeight;
+          var prefilledAutogrow = fixture('basic-prefilled');
+          var prefilledHeight = prefilledAutogrow.offsetHeight;
+
+          assert.isTrue(prefilledHeight > initialHeight);
         });
       });
 

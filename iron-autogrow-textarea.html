@@ -150,7 +150,7 @@ to notify this element the value has changed.
     },
 
     attached: function() {
-      this.bindValue = this.value;
+      this.update();
     },
 
     _bindValueChanged: function() {
