@@ -36,10 +36,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </template>
     </test-fixture>
 
-    <test-fixture id="basic-attached">
+    <test-fixture id="basic-prefilled">
       <template>
-        <div id="insert">
-        </div>
+        <iron-autogrow-textarea>
+<textarea>
+batman
+and
+robin
+</textarea>
+        </iron-autogrow-textarea>
       </template>
     </test-fixture>
 
@@ -84,15 +89,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           assert.isTrue(finalHeight < initialHeight);
         });
 
-        test('bindValue gets initial textarea value when attached to the DOM', function() {
-          var insertDiv = fixture('basic-attached');
-          var html = "<iron-autogrow-textarea><textarea>batman</textarea></iron-autogrow-textarea>";
-          insertDiv.innerHTML = html;
+        test('bindValue gets initial textarea content', function() {
+          var autogrow = fixture('basic-prefilled');
+          var textarea = autogrow.querySelector('textarea');
 
-          var textarea = insertDiv.querySelector('textarea');
-          var autogrow = insertDiv.querySelector('iron-autogrow-textarea');
-          assert.equal(textarea.value, 'batman', 'textarea value equals its content');
-          assert.equal(autogrow.bindValue, textarea.value, 'bindValue equals textarea value after an attach');
+          assert.equal(textarea.value, 'batman\nand\nrobin\n', 'textarea value equals its content');
+          assert.equal(autogrow.bindValue, textarea.value, 'bindValue equals initial textarea value');
+        });
+
+        test('textarea grows to fit its initial content', function() {
+          var autogrow = fixture('basic');
+          var initialHeight = autogrow.offsetHeight;
+          var prefilledAutogrow = fixture('basic-prefilled');
+          var prefilledHeight = prefilledAutogrow.offsetHeight;
+
+          assert.isTrue(prefilledHeight > initialHeight);
         });
       });
 
