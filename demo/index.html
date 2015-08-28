@@ -56,7 +56,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <p>Scrolls after 4 rows:</p>
         <iron-autogrow-textarea max-rows="4"></iron-autogrow-textarea>
         <p>Initial height of 4 rows</p>
-        <iron-autogrow-textarea rows="4"></iron-autogrow-textarea>
+        <iron-autogrow-textarea rows="4" id="textareaForFocus"></iron-autogrow-textarea>
+        <br>
+        <button onclick="textareaFocus()">Focus!</button>
       </div>
     </div>
 
@@ -74,6 +76,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           document.querySelector('iron-autogrow-textarea').textarea.value = inputValue;
         }
 
+      }
+
+      function textareaFocus () {
+        document.getElementById('textareaForFocus').focus();
       }
     </script>
 
