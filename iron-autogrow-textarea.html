@@ -291,7 +291,7 @@ Custom property | Description | Default
       // generated from the _onInput handler, and the two values are already
       // the same.
       if (textarea.value !== this.bindValue) {
-        textarea.value = this.bindValue;
+        textarea.value = !(this.bindValue || this.bindValue === 0) ? '' : this.bindValue;
       }
 
       this.$.mirror.innerHTML = this._valueForMirror();
