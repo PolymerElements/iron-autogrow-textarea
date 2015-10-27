@@ -11,9 +11,7 @@
     "input",
     "textarea"
   ],
-  "main": [
-    "iron-autogrow-textarea.html"
-  ],
+  "main": "iron-autogrow-textarea.html",
   "private": true,
   "repository": {
     "type": "git",
