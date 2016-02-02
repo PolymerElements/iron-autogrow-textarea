@@ -121,8 +121,6 @@ Custom property | Description | Default
 
       /**
        * Use this property instead of `value` for two-way data binding.
-       *
-       * @type {string|number|undefined|null}
        */
       bindValue: {
         observer: '_bindValueChanged',
@@ -192,6 +190,7 @@ Custom property | Description | Default
       value: {
         notify: true,
         type: String,
+        value: '',
         computed: '_computeValue(bindValue)'
       },
 
@@ -265,6 +264,10 @@ Custom property | Description | Default
      */
     set selectionEnd(value) {
       this.$.textarea.selectionEnd = value;
+    },
+	
+    ready: function() {
+      this.bindValue = this.value;
     },
 
     /**
