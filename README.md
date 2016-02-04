@@ -12,9 +12,9 @@ thing! https://github.com/PolymerLabs/tedium/issues
 
 -->
 
-[![Build Status](https://travis-ci.org/PolymerElements/iron-autogrow-textarea.svg?branch=master)](https://travis-ci.org/PolymerElements/iron-autogrow-textarea)
+[![Build status](https://travis-ci.org/PolymerElements/iron-autogrow-textarea.svg?branch=master)](https://travis-ci.org/PolymerElements/iron-autogrow-textarea)
 
-_[Demo and API Docs](https://elements.polymer-project.org/elements/iron-autogrow-textarea)_
+_[Demo and API docs](https://elements.polymer-project.org/elements/iron-autogrow-textarea)_
 
 
 ##&lt;iron-autogrow-textarea&gt;
