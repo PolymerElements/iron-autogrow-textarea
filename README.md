@@ -39,5 +39,6 @@ The following custom properties and mixins are available for styling:
 | Custom property | Description | Default |
 | --- | --- | --- |
 | `--iron-autogrow-textarea` | Mixin applied to the textarea | `{}` |
+| `--iron-autogrow-textarea-placeholder` | Mixin applied to the textarea placeholder | `{}` |
 
 
