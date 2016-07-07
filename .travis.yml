@@ -8,20 +8,19 @@ env:
   global:
   - secure: TqFz1Cdu4BtLCHYLFPES0q+6wPfCnj9bnTfven9LIU+gtek70FPDT3UlnviNwp5ob3o0sbLgsLWG5OkCsRHli+HCgPEVDazSrghfwaT9mL+h/DlM/PVB079VDdIKvZM6L7xEF0zPv7t26kljBRQcZJ81O3K7h1mNjeBj6sDXHzE=
   - secure: ihYM52Uu3H7FGU+x+f+hzMcWt00B7l6GZOtxzT1xYx4hb4E9/WwXYR5z9bqN+s5p10yf3FG64zbmMTuJeBvknDpSyBt/vKP+QBBZT0hxv05GifS38hiSoYT3HBxEpwhYdpjlsSJtIbKfYGR3xIXutRzRrRKSYigcrQNX83MGWFY=
-matrix:
-  env:
-    - DO_NOT_MERGE=1
-    - DO_NOT_MERGE=2
-    - DO_NOT_MERGE=3
-    - DO_NOT_MERGE=4
-    - DO_NOT_MERGE=5
-    - DO_NOT_MERGE=6
-    - DO_NOT_MERGE=7
-    - DO_NOT_MERGE=8
-    - DO_NOT_MERGE=9
-    - DO_NOT_MERGE=A
-    - DO_NOT_MERGE=B
-    - DO_NOT_MERGE=C
+  matrix:
+  - DO_NOT_MERGE=1
+  - DO_NOT_MERGE=2
+  - DO_NOT_MERGE=3
+  - DO_NOT_MERGE=4
+  - DO_NOT_MERGE=5
+  - DO_NOT_MERGE=6
+  - DO_NOT_MERGE=7
+  - DO_NOT_MERGE=8
+  - DO_NOT_MERGE=9
+  - DO_NOT_MERGE=A
+  - DO_NOT_MERGE=B
+  - DO_NOT_MERGE=C
 node_js: stable
 addons:
   firefox: '46.0'
