@@ -12,7 +12,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-behaviors/iron-control-state.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../iron-validatable-behavior/iron-validatable-behavior.html">
-<link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
 
 <!--
 `iron-autogrow-textarea` is an element containing a textarea that grows in height as more
@@ -57,7 +56,7 @@ Custom property | Description | Default
       }
 
       .fit {
-        @apply(--layout-fit);
+        @apply --layout-fit;
       }
 
       textarea {
@@ -74,7 +73,7 @@ Custom property | Description | Default
         font-family: inherit;
         line-height: inherit;
         text-align: inherit;
-        @apply(--iron-autogrow-textarea);
+        @apply --iron-autogrow-textarea;
       }
 
       ::content textarea:invalid {
@@ -126,21 +125,29 @@ Custom property | Description | Default
     is: 'iron-autogrow-textarea',
 
     behaviors: [
-      Polymer.IronFormElementBehavior,
       Polymer.IronValidatableBehavior,
       Polymer.IronControlState
     ],
 
     properties: {
-
       /**
        * Use this property instead of `value` for two-way data binding.
-       * This property will be deprecated in the future. Use `value` instead.
+       * @type {string|number}
+       */
+      value: {
+        observer: '_valueChanged',
+        type: String,
+        notify: true
+      },
+
+      /**
+       * This property is deprecated, and just mirrors `value`. Use `value` instead.
        * @type {string|number}
        */
       bindValue: {
         observer: '_bindValueChanged',
-        type: String
+        type: String,
+        notify: true
       },
 
       /**
@@ -276,24 +283,29 @@ Custom property | Description | Default
      * @return {boolean} True if the value is valid.
      */
     validate: function() {
-      // Empty, non-required input is valid.
-      if (!this.required && this.value == '') {
-        this.invalid = false;
-        return true;
+      // Use the nested input's native validity.
+      var valid =  this.$.textarea.validity.valid;
+
+      // Only do extra checking if the browser thought this was valid.
+      if (valid) {
+        // Empty, required input is invalid
+        if (this.required && this.bindValue === '') {
+          valid = false;
+        } else if (this.hasValidator()) {
+          valid = Polymer.IronValidatableBehavior.validate.call(this, this.bindValue);
+        }
       }
 
-      var valid;
-      if (this.hasValidator()) {
-        valid = Polymer.IronValidatableBehavior.validate.call(this, this.value);
-      } else {
-        valid = this.$.textarea.validity.valid;
-        this.invalid = !valid;
-      }
+      this.invalid = !valid;
       this.fire('iron-input-validate');
       return valid;
     },
 
-    _bindValueChanged: function() {
+    _bindValueChanged: function(value) {
+      this.value = bindValue;
+    },
+
+    _bindValueChanged: function(bindValue) {
       var textarea = this.textarea;
       if (!textarea) {
         return;
@@ -303,14 +315,17 @@ Custom property | Description | Default
       // the underlying textarea's value. Otherwise this change was probably
       // generated from the _onInput handler, and the two values are already
       // the same.
-      if (textarea.value !== this.bindValue) {
-        textarea.value = !(this.bindValue || this.bindValue === 0) ? '' : this.bindValue;
+      if (textarea.value !== bindValue) {
+        textarea.value = !(bindValue || bindValue === 0) ? '' : bindValue;
       }
 
-      this.value = this.bindValue;
+      this.value = bindValue;
       this.$.mirror.innerHTML = this._valueForMirror();
-      // manually notify because we don't want to notify until after setting value
-      this.fire('bind-value-changed', {value: this.bindValue});
+
+      // This code is from early 1.0, when this element was a type extension.
+      // It's unclear if it's still needed, but leaving in in case it is.
+      // manually notify because we don't want to notify until after setting value.
+      // this.fire('bind-value-changed', {value: this.bindValue});
     },
 
     _onInput: function(event) {
@@ -345,9 +360,5 @@ Custom property | Description | Default
     _updateCached: function() {
       this.$.mirror.innerHTML = this._constrain(this.tokens);
     },
-
-    _onValueChanged: function() {
-      this.bindValue = this.value;
-    }
   });
 </script>
