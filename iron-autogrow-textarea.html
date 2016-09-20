@@ -234,10 +234,6 @@ Custom property | Description | Default
       'input': '_onInput'
     },
 
-    observers: [
-      '_onValueChanged(value)'
-    ],
-
     /**
      * Returns the underlying textarea.
      * @type HTMLTextAreaElement
@@ -289,10 +285,10 @@ Custom property | Description | Default
       // Only do extra checking if the browser thought this was valid.
       if (valid) {
         // Empty, required input is invalid
-        if (this.required && this.bindValue === '') {
+        if (this.required && this.value === '') {
           valid = false;
         } else if (this.hasValidator()) {
-          valid = Polymer.IronValidatableBehavior.validate.call(this, this.bindValue);
+          valid = Polymer.IronValidatableBehavior.validate.call(this, this.value);
         }
       }
 
@@ -301,11 +297,11 @@ Custom property | Description | Default
       return valid;
     },
 
-    _bindValueChanged: function(value) {
+    _bindValueChanged: function(bindValue) {
       this.value = bindValue;
     },
 
-    _bindValueChanged: function(bindValue) {
+    _valueChanged: function(value) {
       var textarea = this.textarea;
       if (!textarea) {
         return;
@@ -315,11 +311,11 @@ Custom property | Description | Default
       // the underlying textarea's value. Otherwise this change was probably
       // generated from the _onInput handler, and the two values are already
       // the same.
-      if (textarea.value !== bindValue) {
-        textarea.value = !(bindValue || bindValue === 0) ? '' : bindValue;
+      if (textarea.value !== value) {
+        textarea.value = !(value || value === 0) ? '' : value;
       }
 
-      this.value = bindValue;
+      this.bindValue = value;
       this.$.mirror.innerHTML = this._valueForMirror();
 
       // This code is from early 1.0, when this element was a type extension.
@@ -329,7 +325,7 @@ Custom property | Description | Default
     },
 
     _onInput: function(event) {
-      this.bindValue = event.path ? event.path[0].value : event.target.value;
+      this.value = event.path ? event.path[0].value : event.target.value;
     },
 
     _constrain: function(tokens) {

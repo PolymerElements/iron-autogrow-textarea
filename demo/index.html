@@ -78,17 +78,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <dom-bind>
             <template is="dom-bind">
               <div class="vertical-section">
-                <iron-autogrow-textarea bind-value="{{bindValue}}" id="a1"></iron-autogrow-textarea>
-                <p>bind to the iron-autogrow-textarea's <code>bind-value</code>: {{bindValue}}</p>
+                <iron-autogrow-textarea value="{{value}}" id="a1"></iron-autogrow-textarea>
+                <p>bind to the iron-autogrow-textarea's <code>value</code>: {{value}}</p>
 
                 <br>
-                <p>Imperatively updating <code>ironAutogrowTextarea.bindValue</code> will also update the
+                <p>Imperatively updating <code>ironAutogrowTextarea.value</code> will also update the
                 <code>textarea.value</code></p>
-                <button onclick="a1.bindValue='pineapple'">Set bindValue to 'pineapple'</button>
+                <button onclick="a1.value='pineapple'">Set value to 'pineapple'</button>
 
                 <br>
                 <p>Imperatively updating <code>ironAutogrowTextarea.textarea.value</code> will update
-                the display, but not update the internal<code>bind-value</code></p>
+                the display, but not update the internal<code>value</code></p>
                 <button onclick="a1.textarea.value='watermelon'">Set textarea.value to 'watermelon'</button>
               </div>
             </template>
