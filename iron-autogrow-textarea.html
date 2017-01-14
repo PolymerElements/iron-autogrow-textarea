@@ -77,6 +77,39 @@ Custom property | Description | Default
         @apply(--iron-autogrow-textarea);
       }
 
+      /* iOS has an arbitrary left margin of 3px that isn't present
+       * in any other browser, and means that the paper-textarea's cursor
+       * overlaps the label.
+       * See https://github.com/PolymerElements/paper-input/issues/468 */
+      textarea {
+        margin-left: -3px;
+      }
+
+      /* Undo the margin on non-iOS, non-Edge, non-IE (=.=). This hack is taken from
+       * http://browserstrangeness.bitbucket.org/css_hacks.html#webkit
+       * and I'm sure one day will end, but for now, here we are.
+       */
+      _:-webkit-full-screen-ancestor, :host textarea {
+        margin-left: 0px;
+      }
+
+      /* Undo on Edge */
+      _:-ms-lang(x), _:-webkit-full-screen, textarea {
+        margin-left: 0px;
+      }
+
+      /* Undo on IE. Safari, this is why we can't have nice things. */
+      _:-ms-fullscreen, :root textarea {
+        margin-left: 0px;
+      }
+
+      /* Undo on FF */
+      @-moz-document url-prefix() {
+        textarea {
+          margin-left: 0px;
+        }
+      }
+
       ::content textarea:invalid {
         box-shadow: none;
       }
