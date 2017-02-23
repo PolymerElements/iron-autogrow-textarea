@@ -50,6 +50,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </template>
     </test-fixture>
 
+    <test-fixture id="label">
+      <template>
+        <iron-autogrow-textarea label="foo"></iron-autogrow-textarea>
+      </template>
+    </test-fixture>
+
     <script>
 
       suite('basic', function() {
@@ -181,6 +187,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           input.bindValue = 'batman';
           assert.isTrue(input.validate());
+        });
+      });
+
+
+      suite('a11y', function() {
+
+        test('has aria-labelledby', function() {
+          var autogrow = fixture('label');
+          assert.isTrue(autogrow.textarea.hasAttribute('aria-labelledby'))
+          assert.equal(autogrow.textarea.getAttribute('aria-labelledby'), Polymer.dom(input.root).querySelector('label').id, 'aria-labelledby points to the label');
         });
       });
 
