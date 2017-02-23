@@ -106,7 +106,7 @@ Custom property | Description | Default
     <div class="textarea-container fit">
       <label id$="textarea-aria-label-[[_ariaLabelId]]">[[label]]</label>
       <textarea id="textarea"
-        aria-labelledby$="textarea-aria-label-[[_ariaLabelId]]"
+				aria-labelledby$="textarea-aria-label-[[_ariaLabelId]]"
         name$="[[name]]"
         autocomplete$="[[autocomplete]]"
         autofocus$="[[autofocus]]"
@@ -123,6 +123,8 @@ Custom property | Description | Default
 </dom-module>
 
 <script>
+  Polymer.IronAutogrowHelper = {};
+  Polymer.IronAutogrowHelper.NextLabelID = 1;
 
   Polymer({
 
@@ -243,7 +245,7 @@ Custom property | Description | Default
        */
       _ariaLabelId: {
         type: Number,
-        value: Polymer.PaperInputHelper.NextLabelID++
+        value: Polymer.IronAutogrowHelper.NextLabelID++
       }
     },
 

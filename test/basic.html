@@ -195,8 +195,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('has aria-labelledby', function() {
           var autogrow = fixture('label');
+
           assert.isTrue(autogrow.textarea.hasAttribute('aria-labelledby'))
-          assert.equal(autogrow.textarea.getAttribute('aria-labelledby'), Polymer.dom(input.root).querySelector('label').id, 'aria-labelledby points to the label');
+          assert.equal(autogrow.textarea.getAttribute('aria-labelledby'), Polymer.dom(autogrow.root).querySelector('label').id, 'aria-labelledby points to the label');
         });
       });
 
