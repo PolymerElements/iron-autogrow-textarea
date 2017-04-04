@@ -345,7 +345,8 @@ Custom property | Description | Default
     },
 
     _onInput: function(event) {
-      this.value = event.path ? event.path[0].value : event.target.value;
+      var eventPath = Polymer.dom(event).path;
+      this.value = eventPath ? eventPath[0].value : event.target.value;
     },
 
     _constrain: function(tokens) {
