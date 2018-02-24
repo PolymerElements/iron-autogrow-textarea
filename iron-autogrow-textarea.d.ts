@@ -102,17 +102,17 @@ interface IronAutogrowTextareaElement extends Polymer.Element, Polymer.IronValid
   /**
    * Returns the underlying textarea.
    */
-  readonly textarea: any;
+  readonly textarea: HTMLTextAreaElement;
 
   /**
    * Returns textarea's selection start.
    */
-  selectionStart: any;
+  selectionStart: number;
 
   /**
    * Returns textarea's selection end.
    */
-  selectionEnd: any;
+  selectionEnd: number;
 
   /**
    * Returns true if `value` is valid. The validator provided in `validator`
