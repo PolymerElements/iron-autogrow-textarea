@@ -39,7 +39,8 @@ interface IronAutogrowTextareaElement extends Polymer.Element, Polymer.IronValid
   value: string|number;
 
   /**
-   * This property is deprecated, and just mirrors `value`. Use `value` instead.
+   * This property is deprecated, and just mirrors `value`. Use `value`
+   * instead.
    */
   bindValue: string|number;
 

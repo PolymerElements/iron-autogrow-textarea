@@ -118,36 +118,25 @@ Custom property | Description | Default
 </dom-module>
 
 <script>
-
   Polymer({
 
     is: 'iron-autogrow-textarea',
 
-    behaviors: [
-      Polymer.IronValidatableBehavior,
-      Polymer.IronControlState
-    ],
+    behaviors: [Polymer.IronValidatableBehavior, Polymer.IronControlState],
 
     properties: {
       /**
        * Use this property instead of `bind-value` for two-way data binding.
        * @type {string|number}
        */
-      value: {
-        observer: '_valueChanged',
-        type: String,
-        notify: true
-      },
+      value: {observer: '_valueChanged', type: String, notify: true},
 
       /**
-       * This property is deprecated, and just mirrors `value`. Use `value` instead.
+       * This property is deprecated, and just mirrors `value`. Use `value`
+       * instead.
        * @type {string|number}
        */
-      bindValue: {
-        observer: '_bindValueChanged',
-        type: String,
-        notify: true
-      },
+      bindValue: {observer: '_bindValueChanged', type: String, notify: true},
 
       /**
        * The initial number of rows.
@@ -156,11 +145,7 @@ Custom property | Description | Default
        * @type number
        * @default 1
        */
-      rows: {
-        type: Number,
-        value: 1,
-        observer: '_updateCached'
-      },
+      rows: {type: Number, value: 1, observer: '_updateCached'},
 
       /**
        * The maximum number of rows this element can grow to until it
@@ -170,82 +155,56 @@ Custom property | Description | Default
        * @type number
        * @default 0
        */
-      maxRows: {
-       type: Number,
-       value: 0,
-       observer: '_updateCached'
-      },
+      maxRows: {type: Number, value: 0, observer: '_updateCached'},
 
       /**
        * Bound to the textarea's `autocomplete` attribute.
        */
-      autocomplete: {
-        type: String,
-        value: 'off'
-      },
+      autocomplete: {type: String, value: 'off'},
 
       /**
        * Bound to the textarea's `autofocus` attribute.
        */
-      autofocus: {
-        type: Boolean,
-        value: false
-      },
+      autofocus: {type: Boolean, value: false},
 
       /**
        * Bound to the textarea's `inputmode` attribute.
        */
-      inputmode: {
-        type: String
-      },
+      inputmode: {type: String},
 
       /**
        * Bound to the textarea's `placeholder` attribute.
        */
-      placeholder: {
-        type: String
-      },
+      placeholder: {type: String},
 
       /**
        * Bound to the textarea's `readonly` attribute.
        */
-      readonly: {
-        type: String
-      },
+      readonly: {type: String},
 
       /**
        * Set to true to mark the textarea as required.
        */
-      required: {
-        type: Boolean
-      },
+      required: {type: Boolean},
 
       /**
        * The minimum length of the input value.
        */
-      minlength: {
-        type: Number
-      },
+      minlength: {type: Number},
 
       /**
        * The maximum length of the input value.
        */
-      maxlength: {
-        type: Number
-      },
+      maxlength: {type: Number},
 
       /**
        * Bound to the textarea's `aria-label` attribute.
        */
-      label: {
-        type: String
-      }
+      label: {type: String}
 
     },
 
-    listeners: {
-      'input': '_onInput'
-    },
+    listeners: {'input': '_onInput'},
 
     /**
      * Returns the underlying textarea.
@@ -305,7 +264,7 @@ Custom property | Description | Default
      */
     validate: function() {
       // Use the nested input's native validity.
-      var valid =  this.$.textarea.validity.valid;
+      var valid = this.$.textarea.validity.valid;
 
       // Only do extra checking if the browser thought this was valid.
       if (valid) {
@@ -343,7 +302,8 @@ Custom property | Description | Default
       this.bindValue = value;
       this.$.mirror.innerHTML = this._valueForMirror();
 
-      // Manually notify because we don't want to notify until after setting value.
+      // Manually notify because we don't want to notify until after setting
+      // value.
       this.fire('bind-value-changed', {value: this.bindValue});
     },
 
@@ -355,7 +315,8 @@ Custom property | Description | Default
     _constrain: function(tokens) {
       var _tokens;
       tokens = tokens || [''];
-      // Enforce the min and max heights for a multiline input to avoid measurement
+      // Enforce the min and max heights for a multiline input to avoid
+      // measurement
       if (this.maxRows > 0 && tokens.length > this.maxRows) {
         _tokens = tokens.slice(0, this.maxRows);
       } else {
@@ -373,7 +334,13 @@ Custom property | Description | Default
       if (!input) {
         return;
       }
-      this.tokens = (input && input.value) ? input.value.replace(/&/gm, '&amp;').replace(/"/gm, '&quot;').replace(/'/gm, '&#39;').replace(/</gm, '&lt;').replace(/>/gm, '&gt;').split('\n') : [''];
+      this.tokens = (input && input.value) ? input.value.replace(/&/gm, '&amp;')
+                                                 .replace(/"/gm, '&quot;')
+                                                 .replace(/'/gm, '&#39;')
+                                                 .replace(/</gm, '&lt;')
+                                                 .replace(/>/gm, '&gt;')
+                                                 .split('\n') :
+                                             [''];
       return this._constrain(this.tokens);
     },
 
