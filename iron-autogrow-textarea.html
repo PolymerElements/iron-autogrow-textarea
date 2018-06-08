@@ -300,7 +300,9 @@ Custom property | Description | Default
       }
 
       this.bindValue = value;
-      this.$.mirror.innerHTML = this._valueForMirror();
+      this.debounce('delayMirror', function() {
+        this.$.mirror.innerHTML = this._valueForMirror();
+      }.bind(this), 500);
 
       // Manually notify because we don't want to notify until after setting
       // value.
