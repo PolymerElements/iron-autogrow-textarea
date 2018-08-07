@@ -348,17 +348,17 @@ Custom property | Description | Default
     _updateCached: function() {
       this.$.mirror.innerHTML = this._constrain(this.tokens);
     },
-      
+
     _onChange: function(event) {
       // In the Shadow DOM, the `change` event is not leaked into the
       // ancestor tree, so we must do this manually.
-      // See https://w3c.github.io/webcomponents/spec/shadow/#events-that-are-not-leaked-into-ancestor-trees.
+      // See
+      // https://w3c.github.io/webcomponents/spec/shadow/#events-that-are-not-leaked-into-ancestor-trees.
       if (this.shadowRoot) {
-        this.fire(event.type, {sourceEvent: event}, {
-          node: this,
-          bubbles: event.bubbles,
-          cancelable: event.cancelable
-        });
+        this.fire(
+            event.type,
+            {sourceEvent: event},
+            {node: this, bubbles: event.bubbles, cancelable: event.cancelable});
       }
     },
   });
