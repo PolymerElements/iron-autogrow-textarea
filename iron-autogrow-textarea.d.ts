@@ -130,6 +130,7 @@ interface IronAutogrowTextareaElement extends Polymer.Element, Polymer.IronValid
   _constrain(tokens: any): any;
   _valueForMirror(): any;
   _updateCached(): void;
+  _onChange(event: any): void;
 }
 
 interface HTMLElementTagNameMap {
