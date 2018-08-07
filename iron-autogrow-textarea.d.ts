@@ -31,7 +31,7 @@
  * `--iron-autogrow-textarea` | Mixin applied to the textarea | `{}`
  * `--iron-autogrow-textarea-placeholder` | Mixin applied to the textarea placeholder | `{}`
  */
-interface IronAutogrowTextareaElement extends Polymer.Element, Polymer.IronValidatableBehavior, Polymer.IronControlState {
+interface IronAutogrowTextareaElement extends Polymer.IronValidatableBehavior, Polymer.IronControlState, Polymer.LegacyElementMixin, HTMLElement {
 
   /**
    * Use this property instead of `bind-value` for two-way data binding.
@@ -130,6 +130,7 @@ interface IronAutogrowTextareaElement extends Polymer.Element, Polymer.IronValid
   _constrain(tokens: any): any;
   _valueForMirror(): any;
   _updateCached(): void;
+  _onChange(event: any): void;
 }
 
 interface HTMLElementTagNameMap {
