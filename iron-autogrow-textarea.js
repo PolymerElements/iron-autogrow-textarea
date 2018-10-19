@@ -103,7 +103,7 @@ Polymer({
 
     <!-- size the input/textarea with a div, because the textarea has intrinsic size in ff -->
     <div class="textarea-container fit">
-      <textarea id="textarea" name\$="[[name]]" aria-label\$="[[label]]" autocomplete\$="[[autocomplete]]" autofocus\$="[[autofocus]]" inputmode\$="[[inputmode]]" placeholder\$="[[placeholder]]" readonly\$="[[readonly]]" required\$="[[required]]" disabled\$="[[disabled]]" rows\$="[[rows]]" minlength\$="[[minlength]]" maxlength\$="[[maxlength]]"></textarea>
+      <textarea id="textarea" name\$="[[name]]" aria-label\$="[[label]]" autocomplete\$="[[autocomplete]]" autofocus\$="[[autofocus]]" autocapitalize\$="[[autocapitalize]]" inputmode\$="[[inputmode]]" placeholder\$="[[placeholder]]" readonly\$="[[readonly]]" required\$="[[required]]" disabled\$="[[disabled]]" rows\$="[[rows]]" minlength\$="[[minlength]]" maxlength\$="[[maxlength]]"></textarea>
     </div>
 `,
 
@@ -152,6 +152,11 @@ Polymer({
      * Bound to the textarea's `autofocus` attribute.
      */
     autofocus: {type: Boolean, value: false},
+
+    /**
+     * Bound to the textarea's `autocomplete` attribute.
+     */
+    autocapitalize: {type: String, value: 'none'},
 
     /**
      * Bound to the textarea's `inputmode` attribute.
