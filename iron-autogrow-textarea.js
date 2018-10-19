@@ -154,6 +154,11 @@ Polymer({
     autofocus: {type: Boolean, value: false},
 
     /**
+     * Bound to the textarea's `autocomplete` attribute.
+     */
+    autocapitalize: {type: String, value: 'none'},
+
+    /**
      * Bound to the textarea's `inputmode` attribute.
      */
     inputmode: {type: String},
