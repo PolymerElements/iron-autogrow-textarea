@@ -264,7 +264,9 @@ Custom property | Description | Default
      */
     validate: function() {
       // Use the nested input's native validity.
-      var valid = this.$.textarea.validity.valid;
+      // Note(cg): validate happens too early when `paper-texarea` has an initial value 
+      // and is `auto-validate` (this.$ is undefined - https://github.com/PolymerElements/paper-input/issues/531)
+      var valid = this.$ ? this.$.textarea.validity.valid : true;
 
       // Only do extra checking if the browser thought this was valid.
       if (valid) {
