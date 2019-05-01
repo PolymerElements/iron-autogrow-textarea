@@ -202,7 +202,7 @@ Polymer({
    * @return {!HTMLTextAreaElement}
    */
   get textarea() {
-    return this.$.textarea;
+    return /** @type {!HTMLTextAreaElement} */ (this.$.textarea);
   },
 
   /**
