@@ -35,11 +35,10 @@ Custom property | Description | Default
 `--iron-autogrow-textarea` | Mixin applied to the textarea | `{}`
 `--iron-autogrow-textarea-placeholder` | Mixin applied to the textarea placeholder | `{}`
 
-@group Iron Elements
-@hero hero.svg
 @demo demo/index.html
 */
 Polymer({
+  /** @override */
   _template: html`
     <style>
       :host {
@@ -235,6 +234,7 @@ Polymer({
     this.$.textarea.selectionEnd = value;
   },
 
+  /** @override */
   attached: function() {
     /* iOS has an arbitrary left margin of 3px that isn't present
      * in any other browser, and means that the paper-textarea's cursor
