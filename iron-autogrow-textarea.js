@@ -150,7 +150,7 @@ Polymer({
     /**
      * Bound to the textarea's `autofocus` attribute.
      *
-     * @type {boolean}
+     * @type {!boolean}
      */
     autofocus: {type: Boolean, value: false},
 
