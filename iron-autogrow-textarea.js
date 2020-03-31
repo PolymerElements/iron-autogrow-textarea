@@ -243,7 +243,8 @@ Polymer({
      * overlaps the label.
      * See https://github.com/PolymerElements/paper-input/issues/468.
      */
-    var IS_IOS = navigator.userAgent.match(/iP(?:[oa]d|hone)/);
+    var IS_IOS = navigator.userAgent.match(/iP(?:[oa]d|hone)/) &&
+        !navigator.userAgent.match(/OS 1[3456789]/);
     if (IS_IOS) {
       this.$.textarea.style.marginLeft = '-3px';
     }
